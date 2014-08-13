@@ -1,0 +1,15 @@
+# All Ignore
+*
+
+
+# Except
+# Emacs
+!/.emacs.d/init.el
+!/.emacs.d/inits
+!/.emacs.d/ac-dict
+
+!/.bash_profile
+!/.zshrc
+!/.gitconfig
+!/.gitignore
+.
