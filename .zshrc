@@ -111,4 +111,18 @@ setopt print_eight_bit
 
 
 # python
-source ~/Documents/virtualenv/univ/bin/activate
+#source ~/Documents/virtualenv/univ/bin/activate
+## virtualenv, virtualenvwrapper
+source `which virtualenvwrapper.sh`
+export WORKON_HOME=$HOME/.virtualenvs
+export PIP_RESPECT_VIRTUALENV=true
+
+# Pythonz
+[[ -s $HOME/.pythonz/etc/bashrc ]] && source $HOME/.pythonz/etc/bashrc
+
+#PATH=$HOME/.pythonz/virtualenv/Python-2.7.7/bin:$PATH
+
+
+# CUDA
+export PATH=/Developer/NVIDIA/CUDA-5.5/bin:$PATH
+export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-5.5/lib:$DYLD_LIBRARY_PATH  
