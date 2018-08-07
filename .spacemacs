@@ -451,6 +451,32 @@ you should place your code here."
               (set (make-variable-buffer-local 'company-idle-delay) 0.1)
               (set (make-variable-buffer-local 'company-minimum-prefix-length) 0)))
 
+;;; org-mode
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+
+(setq org-latex-classes '(("ltjsarticle"
+            "\\documentclass{ltjsarticle}
+\\usepackage{url}
+\\usepackage{amsmath}
+\\usepackage{newtxtext,newtxmath}
+\\usepackage{graphicx}
+\\usepackage{luatexja}
+\\usepackage[unicode]{hyperref}
+ [NO-DEFAULT-PACKAGES]
+ [PACKAGES]
+ [EXTRA]"
+            ("\\section{%s}" . "\\section*{%s}")
+            ("\\subsection{%s}" . "\\subsection*{%s}")
+            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+            ("\\paragraph{%s}" . "\\paragraph*{%s}")
+            ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+               ))
+
+(setq org-latex-pdf-process
+      '("latexmk -gg -lualatex %f"
+        ))
+
+(setq org-latex-default-class "ltjsarticle")
   ) ;; end of user-config
 
 ;; Do not write anything past this comment. This is where Emacs will
