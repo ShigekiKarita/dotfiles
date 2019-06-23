@@ -9,13 +9,12 @@
 
 (defvar my/favorite-packages
   '(
-    d-mode
     helm
     lua-mode
-    smex
-    magit
     flycheck-d-unittest
+    d-mode
     company
+    ;; company-dcd
     ))
 
 ;; my/favorite-packages
@@ -38,7 +37,7 @@
 (set-face-attribute 'mode-line-inactive nil :box nil)
 
 ;; lua
-(setq lua-default-application "luajit")
+;; (setq lua-default-application "luajit")
 
 
 ;; gauche
@@ -68,33 +67,40 @@
 (add-hook 'd-mode-hook #'flycheck-mode)
 (setup-flycheck-d-unittest)
 
+
 ;; helm
 (helm-mode 1)
 
-(smex-initialize)
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-
+(global-set-key (kbd "M-x") 'helm-M-x)
 ;; misc
 ;; (global-flycheck-mode t)
+
 (global-company-mode t)
+(setq company-idle-delay 0) ; デフォル5
+(setq company-minimum-prefix-length 2) ; デフォルトは4
+(setq company-selection-wrap-around t) ; 候補の一番下でさらに下に行こうとすると一番上に戻る
 
-
- (setq ring-bell-function 'ignore)
+(setq ring-bell-function 'ignore)
 (setq indent-tabs-mode nil)
 
-;; C++ style
-(add-hook 'd-mode-hook
-          '(lambda()
-             ;; (c-set-style "bsd")
-             (setq c-default-style "bsd"
-		   c-basic-offset 4
-		   indent-tabs-mode nil)     ; インデントは空白文字で行う（TABコードを空白に変換）
-             (c-set-offset 'innamespace 0)   ; namespace {}の中はインデントしない
-             (c-set-offset 'arglist-close 0) ; 関数の引数リストの閉じ括弧はインデントしない
-             )) 
-(setq c-basic-offset 4)
-;; (load-theme 'monokai)
+;; dlang
 
+
+;; (add-hook 'd-mode-hook 'company-dcd-mode)
+;; (setq company-dcd-client-execulable (concat (getenv "HOME") "\\tool\\DCD\\bin\\dcd-client.exe"))
+;; (setq company-dcd-server-execulable (concat (getenv "HOME") "\\tool\\DCD\\bin\\dcd-server.exe"))
+
+(add-hook 'd-mode-hook
+	  '(lambda()
+	     ;; (c-set-style "bsd")
+	     (setq c-default-style "stroustrop"
+		   c-basic-offset 4
+		   indent-tabs-mode nil)
+	     (c-set-offset 'innamespace 0)
+	     ;; namespace {}の中はインデントしない
+	     (c-set-offset 'arglist-close 0)
+	     ;; 関数の引数リストの閉じ括弧はインデントしない
+	     ))
+(setq c-basic-offset 4)
 
 (setq linum-format "%4d  ")
