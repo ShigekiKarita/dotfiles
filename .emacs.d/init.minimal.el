@@ -3,10 +3,11 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
-(package-refresh-contents)		; comment out unless the first time
+;; (package-refresh-contents)		; do this for the first time
 (defvar my/favorite-packages
   '(
     helm
+    magit
     lua-mode
     use-package
     spacemacs-theme
@@ -50,7 +51,11 @@
 
 
 ;; ==== complete ====
+(setq recentf-max-saved-items 2000)
+(setq recentf-auto-cleanup 'never)
+(recentf-mode t)
 (helm-mode t)
+(global-set-key (kbd "C-x b") 'helm-mini) ; similar to helm-recentf but more informative
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-company-mode t)
 (setq company-idle-delay 0)
@@ -142,7 +147,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (use-package racer flycheck-rust rust-mode spacemacs-theme lua-mode helm d-mode company-dcd))))
+    (magit use-package racer flycheck-rust rust-mode spacemacs-theme lua-mode helm d-mode company-dcd))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
