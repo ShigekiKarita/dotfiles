@@ -72,14 +72,12 @@
    (c-offsets-alist
     (substatement-open . 0))
    ))
-
 (defun my/c++-mode-init ()
   (c-set-offset 'arglist-close 0)
   (c-set-offset 'innamespace 0)
   (setq c-basic-offset 4
 	indent-tabs-mode nil
 	c-default-style "mine"))
-
 (add-hook 'c-mode-hook 'my/c++-mode-init)
 (add-hook 'c++-mode-hook 'my/c++-mode-init)
 
@@ -128,7 +126,6 @@
                       "/lib/rustlib/src/rust/src"))
 
   :config
-  (add-hook 'rust-mode-hook #'racer-mode)
   (setq-default rust-format-on-save t)
   (add-hook 'rust-mode-hook #'racer-mode)
   (add-hook 'racer-mode-hook #'eldoc-mode)
