@@ -42,7 +42,7 @@
 (setq linum-format "%4d  ")
 (menu-bar-mode 0)
 ;; (windmove-default-keybindings 'meta)
-(global-set-key (kbd "M-<left>")  'windmove-left)
+(global-set-key (kbd "C-c <left>")  'windmove-left)
 (global-set-key (kbd "C-c <down>")  'windmove-down)
 (global-set-key (kbd "C-c <up>")    'windmove-up)
 (global-set-key (kbd "C-c <right>") 'windmove-right)

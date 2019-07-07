@@ -10,8 +10,6 @@
     lua-mode
     use-package
     spacemacs-theme
-    markdown-mode
-    google-c-style
     ;; rust
     racer
     flycheck-rust
@@ -41,12 +39,6 @@
 (set-face-attribute 'mode-line-inactive nil :box nil)
 (setq linum-format "%4d  ")
 (menu-bar-mode 0)
-;; (windmove-default-keybindings 'meta)
-(global-set-key (kbd "M-<left>")  'windmove-left)
-(global-set-key (kbd "C-c <down>")  'windmove-down)
-(global-set-key (kbd "C-c <up>")    'windmove-up)
-(global-set-key (kbd "C-c <right>") 'windmove-right)
-
 
 
 ;; ==== theme ====
@@ -60,8 +52,7 @@
 ;; ==== complete ====
 (recentf-mode t)
 (helm-mode t)
-;; (global-set-key (kbd "C-f") 'helm-recentf)
-(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-f") 'helm-recentf)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-company-mode t)
 (setq company-idle-delay 0)
@@ -84,14 +75,11 @@
     (substatement-open . 0))
    ))
 (defun my/c++-mode-init ()
-  (subword-mode)
-  (google-set-c-style)
-  (google-make-newline-indent)
   (c-set-offset 'arglist-close 0)
   (c-set-offset 'innamespace 0)
-  (setq c-basic-offset 4))
-	;; indent-tabs-mode nil
-	;; c-default-style "mine"))
+  (setq c-basic-offset 4
+	indent-tabs-mode nil
+	c-default-style "mine"))
 (add-hook 'c-mode-hook 'my/c++-mode-init)
 (add-hook 'c++-mode-hook 'my/c++-mode-init)
 
