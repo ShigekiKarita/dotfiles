@@ -1,10 +1,14 @@
 # All Ignore
 /*
+*~
+#*
 
 
 # Except
 # Emacs
 !/.emacs.d
+.emacs.d/*~
+.emacs.d/#*
 
 !/.bash_profile
 !/.zshrc

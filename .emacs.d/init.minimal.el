@@ -12,7 +12,6 @@
     spacemacs-theme
     markdown-mode
     google-c-style
-    zig-mode
     ;; rust
     racer
     flycheck-rust
@@ -48,6 +47,9 @@
 (global-set-key (kbd "C-c <up>")    'windmove-up)
 (global-set-key (kbd "C-c <right>") 'windmove-right)
 
+;; scroll line-by-line
+(setq scroll-step            1
+      scroll-conservatively  10000)
 
 
 ;; ==== theme ====
@@ -149,6 +151,20 @@
   (setq company-tooltip-align-annotations t)
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
+;; zig-mode
+(use-package eglot
+  :ensure t)
+(use-package zig-mode
+  :ensure t
+  :config
+  (add-hook 'zig-mode-hook 'eglot-ensure)
+  (add-to-list 'eglot-server-programs
+	       `(zig-mode . ("zls"))))
+
+;; etc
+(use-package yaml-mode
+  :ensure t)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -157,7 +173,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (zig-mode markdown-mode use-package racer flycheck-rust rust-mode spacemacs-theme lua-mode helm d-mode company-dcd))))
+    (yaml-mode eglot zig-mode markdown-mode use-package racer flycheck-rust rust-mode spacemacs-theme lua-mode helm d-mode company-dcd))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
