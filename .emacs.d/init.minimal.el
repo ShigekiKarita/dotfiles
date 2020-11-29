@@ -12,6 +12,7 @@
     spacemacs-theme
     markdown-mode
     google-c-style
+    zig-mode
     ;; rust
     racer
     flycheck-rust
@@ -41,7 +42,7 @@
 (set-face-attribute 'mode-line-inactive nil :box nil)
 (setq linum-format "%4d  ")
 (menu-bar-mode 0)
-;; (windmove-default-keybindings 'meta)
+(windmove-default-keybindings)
 (global-set-key (kbd "M-<left>")  'windmove-left)
 (global-set-key (kbd "C-c <down>")  'windmove-down)
 (global-set-key (kbd "C-c <up>")    'windmove-up)
@@ -50,7 +51,7 @@
 
 
 ;; ==== theme ====
-(load-theme 'spacemacs-dark t)
+;; (load-theme 'spacemacs-dark t)
 
 
 ;; ==== linter ====
@@ -156,7 +157,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (markdown-mode use-package racer flycheck-rust rust-mode spacemacs-theme lua-mode helm d-mode company-dcd))))
+    (zig-mode markdown-mode use-package racer flycheck-rust rust-mode spacemacs-theme lua-mode helm d-mode company-dcd))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
