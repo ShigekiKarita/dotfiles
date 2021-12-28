@@ -3,7 +3,7 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
-;; (package-refresh-contents)		; do this for the first time
+;; (package-refresh-contents)  ; do this for the first time
 (defvar my/favorite-packages
   '(
     helm
@@ -36,9 +36,9 @@
 ;; (w32-select-font) ; list fonts for windows
 (set-face-attribute 'default nil :family "Ricty Diminished Discord for Po-30" :height 130)
 (setq ring-bell-function 'ignore)
-(setq indent-tabs-mode nil)
-(set-face-attribute 'mode-line nil :box nil)
-(set-face-attribute 'mode-line-inactive nil :box nil)
+(setq-default indent-tabs-mode nil)
+;; (set-face-attribute 'mode-line nil :box nil)
+;; (set-face-attribute 'mode-line-inactive nil :box nil)
 (setq linum-format "%4d  ")
 (menu-bar-mode 0)
 (windmove-default-keybindings)
@@ -51,6 +51,30 @@
 (setq scroll-step            1
       scroll-conservatively  10000)
 
+;; whitespace mode
+(require 'whitespace)
+(setq whitespace-style '(face           ; faceで可視化
+                         trailing       ; 行末
+                         tabs           ; タブ
+                         spaces         ; スペース
+                         empty          ; 先頭/末尾の空行
+                         space-mark     ; 表示のマッピング
+                         tab-mark
+                         lines-tail))
+
+(setq whitespace-display-mappings
+      '((space-mark ?\u3000 [?\u25a1])
+        (tab-mark ?\t [?\u00BB ?\t] [?\\ ?\t])))
+
+;; スペースは全角　のみを可視化
+(setq whitespace-space-regexp "\\(\u3000+\\)")
+
+;; 保存前に自動でクリーンアップ
+(setq whitespace-action '(auto-cleanup))
+;; lint 80 col
+(setq whitespace-line-column 80)
+(global-whitespace-mode 1)
+(column-number-mode)
 
 ;; ==== theme ====
 ;; (load-theme 'spacemacs-dark t)
@@ -159,9 +183,27 @@
   :config
   (add-hook 'zig-mode-hook 'eglot-ensure)
   (add-to-list 'eglot-server-programs
-	       `(zig-mode . ("zls"))))
+               `(zig-mode . ("zls"))))
+
+;; common lisp
+(use-package slime
+  :ensure slime-company
+  :custom
+  inferior-lisp-program "sbcl"
+  :config (slime-setup '(slime-repl slime-fancy slime-banner slime-company)))
+(use-package slime-company
+  :ensure t
+  :after (slime company)
+  :custom
+  slime-company-completion 'fuzzy
+  slime-company-after-completion 'slime-company-just-one-space)
+
 
 ;; etc
+(use-package python
+  :custom
+  tab-width 2)
+
 (use-package yaml-mode
   :ensure t)
 
@@ -171,9 +213,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default)))
  '(package-selected-packages
    (quote
-    (yaml-mode eglot zig-mode markdown-mode use-package racer flycheck-rust rust-mode spacemacs-theme lua-mode helm d-mode company-dcd))))
+    (nhexl-mode slime-company slime protobuf-mode yaml-mode eglot zig-mode markdown-mode use-package racer flycheck-rust rust-mode spacemacs-theme lua-mode helm d-mode company-dcd))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
